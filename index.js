@@ -34,6 +34,7 @@ const cache = (duration) => {
 }
 
 app.get("/amg/1", cache(120), (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=120');
     Gamedig.query({
         type: "forrest",
         host: "157.90.7.148",
@@ -46,6 +47,7 @@ app.get("/amg/1", cache(120), (req, res, next) => {
 });
 
 app.get("/amg/2", cache(120), (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=120');
     Gamedig.query({
         type: "rust",
         host: "51.77.77.129",
@@ -58,6 +60,7 @@ app.get("/amg/2", cache(120), (req, res, next) => {
 });
 
 app.get('/game/:gamename/:host/:port', cache(120), (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=120');
     Gamedig.query({
         type: req.params.gamename,
         host: req.params.host,
