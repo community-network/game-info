@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors')
 const Gamedig = require('gamedig');
 const mcache = require('memory-cache');
+const port = process.env.PORT || 3035;
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -74,4 +75,7 @@ app.get('/game/:gamename/:host/:port', cache(120), (req, res, next) => {
 
 var httpsServer = http.createServer({}, app);
 
-httpsServer.listen(3035);
+const server = httpsServer.listen(port, () => console.log(`App listening on port ${port}!`));
+
+server.keepAliveTimeout = 120 * 1000;
+server.headersTimeout = 120 * 1000;
