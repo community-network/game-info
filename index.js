@@ -3,7 +3,7 @@ const http = require('http');
 const express = require("express");
 const app = express();
 const cors = require('cors')
-const Gamedig = require('gamedig');
+const { GameDig } = require('gamedig');
 const mcache = require('memory-cache');
 const port = process.env.PORT || 3035;
 
@@ -36,7 +36,7 @@ const cache = (duration) => {
 
 app.get("/amg/1", cache(120), (req, res, next) => {
     res.set('Cache-Control', 'public, max-age=120');
-    Gamedig.query({
+    GameDig.query({
         type: "forrest",
         host: "157.90.7.148",
         port: "10015",
@@ -49,7 +49,7 @@ app.get("/amg/1", cache(120), (req, res, next) => {
 
 app.get("/amg/2", cache(120), (req, res, next) => {
     res.set('Cache-Control', 'public, max-age=120');
-    Gamedig.query({
+    GameDig.query({
         type: "rust",
         host: "51.77.77.129",
         port: "27030",
@@ -62,7 +62,7 @@ app.get("/amg/2", cache(120), (req, res, next) => {
 
 app.get('/game/:gamename/:host/:port', cache(120), (req, res, next) => {
     res.set('Cache-Control', 'public, max-age=120');
-    Gamedig.query({
+    GameDig.query({
         type: req.params.gamename,
         host: req.params.host,
         port: req.params.port,
