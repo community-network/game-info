@@ -14,7 +14,7 @@ const swaggerOptions = {
         openapi: '3.0.0',
         info: {
             title: 'GameDig API',
-            description: 'GameDig API, used within widgets.gametools.network and the gamedig status bot available on GitHub.',
+            description: 'GameDig API. based on https://github.com/gamedig/node-gamedig, made available to be used within widgets.gametools.network and the gamedig status bot available on GitHub.',
             contact: {
                 name: 'Zefanja Jobse'
             },
